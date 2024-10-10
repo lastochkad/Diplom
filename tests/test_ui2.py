@@ -31,7 +31,8 @@ def test_search_film(browser):
         Main_paige.open()
     with allure.step("Поиск в шапке страницы фильма"):
         Main_paige.search_by_head("Король и Шут")
-
+    assert "Король и Шут" in MainPage.first_result_of_search()
+  
 @allure.id("Diplom-UI-2")
 @allure.severity("Blocker")
 @allure.story("Поиск фильма")
@@ -46,6 +47,7 @@ def test_super_search_film(browser):
         Main_paige.open()
     with allure.step("Открыть меню расширеного поиска"):
         Main_paige.open_super_search()
+    assert "Расширеный поиск" in MainPage.first_result_of_search()
 
 @allure.id("Diplom-UI-3")
 @allure.severity("Blocker")

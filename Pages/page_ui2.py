@@ -36,6 +36,15 @@ class BasePage:
         """
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator)).send_keys(text)
 
+    def find_and_catch(self, by_locator):
+        """
+        Поиск элемента и получение текста.
+        :param by_locator: локатор элемента (тип и значение).
+        """
+        element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(by_locator))
+        return element.text
+
+
 class MainPage(BasePage):
     @allure.step("Открыть базовую страницу кинопоиска")
     def open(self):
@@ -48,11 +57,16 @@ class MainPage(BasePage):
     def search_by_head(self,name_film):
         self.find_and_type((By.CSS_SELECTOR,'input[name="kp_query"'), name_film)
         self.find_and_click((By.CSS_SELECTOR, 'button[type="submit"'))
-
+    
+    @allure.step("Поиск первого результата в списке")
+    def first_result_of_search(self):
+        first = self.find_and_catch((By.CSS_SELECTOR, '.search_results .element.most_wanted .info .name a'))
+        return first
+    
     @allure.step("Поиск в шапке страницы используя расширенный поиск")
     def open_super_search(self):
         self.find_and_click((By.CSS_SELECTOR,'[aria-label="Расширенный поиск"]'))
-
+     
     @allure.step("Скролл страницы вниз-1")
     def scroll_down(self,element):
         self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
