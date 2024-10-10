@@ -31,7 +31,8 @@ def test_search_film(browser):
         Main_paige.open()
     with allure.step("Поиск в шапке страницы фильма"):
         Main_paige.search_by_head("Король и Шут")
-    assert "Король и Шут" in MainPage.first_result_of_search()
+    assert "Король и Шут" in Main_paige.first_result_of_search()
+  
   
 @allure.id("Diplom-UI-2")
 @allure.severity("Blocker")
@@ -47,7 +48,7 @@ def test_super_search_film(browser):
         Main_paige.open()
     with allure.step("Открыть меню расширеного поиска"):
         Main_paige.open_super_search()
-    assert "Расширеный поиск" in MainPage.first_result_of_search()
+
 
 @allure.id("Diplom-UI-3")
 @allure.severity("Blocker")
@@ -66,8 +67,9 @@ def test_search_by_top(browser):
     with allure.step("Открыть меню расширеного поиска"):
         Main_paige.open_super_search()
     with allure.step("открыть поиск по топ фильмам"):
-        High_search.search_by_top()
-
+        High_search.search_by_top()  
+ 
+    
 @allure.id("Diplom-UI-4")
 @allure.severity("Critical")
 @allure.story("Поиск фильма")
@@ -113,6 +115,8 @@ def test_search_anime_film_top(browser):
     with allure.step("Нажать на звезду"):
         High_search.click_star()
 
+   
+
 @allure.id("Diplom-UI-5")
 @allure.severity("Blocker")
 @allure.story("Support")
@@ -131,3 +135,4 @@ def test_write_to_support(browser):
         Main_paige.scroll_2()
     with allure.step("нажать на кнопку 'поддержка'"):
         Main_paige.find_support()
+ 

@@ -144,3 +144,4 @@ class highSearch(BasePage):
     def click_star(self):
         self.find_and_click((By.CSS_SELECTOR, 'a[class="s10"]'))
 
+        
